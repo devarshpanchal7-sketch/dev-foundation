@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!-- ========================================================================
+     DEV FOUNDATION - gallery.html  (GALLERY)
+     Self-contained. Upload just this ONE file.
+     Photos load from the images/ folder (filenames matched exactly).
+     Features: filter tabs + click-to-enlarge lightbox (with prev/next).
+     TO ADD PLANTATION PHOTOS LATER: search  PLANTATION-PHOTOS  below.
+     ======================================================================== -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — DEV Foundation</title>
+<meta name="description" content="Photos from DEV Foundation's work — tree plantation, books, art, fire-safety training and heat-wave awareness in Ahmedabad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F3E8;--paper-2:#FDFCF4;--forest:#1C4A2E;--forest-deep:#0F2E1C;
+  --leaf:#3E8E41;--leaf-soft:#7CBE6B;--sky:#4A7FA5;--amber:#C98A2E;--earth:#8A5A34;
+  --gold:#C39B45;--ink:#21301F;--muted:#566152;--line:#E4E2D2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf-soft);margin-bottom:16px}
+.btn{display:inline-block;background:var(--forest);color:#fff;padding:13px 28px;border-radius:100px;font-weight:600;font-size:15px;transition:.25s}
+.btn:hover{background:var(--forest-deep);transform:translateY(-2px)}
+
+/* NAV */
+header.site-nav{position:fixed;inset:0 0 auto 0;z-index:60;background:rgba(12,38,23,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:17px;color:#fff}
+.nav-logo img{width:38px;height:38px;object-fit:contain;background:#fff;border-radius:50%;padding:2px}
+.nav-menu{display:flex;gap:22px;align-items:center}
+.nav-menu a{font-size:14px;font-weight:500;color:#D5E3D6;transition:color .2s}
+.nav-menu a:hover,.nav-menu a.active{color:#fff}
+.nav-menu .btn{padding:8px 18px;font-size:13.5px;background:var(--leaf)}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.nav-burger span{width:24px;height:2.5px;background:#fff;border-radius:2px}
+@media(max-width:900px){.nav-burger{display:flex}
+  .nav-menu{position:fixed;top:66px;right:0;left:0;background:rgba(12,38,23,.98);flex-direction:column;padding:24px;gap:18px;transform:translateY(-135%);transition:transform .35s ease}
+  .nav-menu.open{transform:translateY(0)}.nav-menu a{font-size:17px}}
+
+/* PAGE HERO */
+.page-hero{position:relative;padding:150px 0 80px;text-align:center;color:#fff;overflow:hidden;background:linear-gradient(180deg,#0C2617 0%,#123A22 55%,#1C4A2E 100%)}
+.page-hero h1{font-size:clamp(36px,6vw,60px);margin-bottom:14px}
+.page-hero h1 em{font-style:italic;color:var(--leaf-soft)}
+.page-hero p{color:#CFE0D0;max-width:600px;margin:0 auto;font-size:clamp(15.5px,2vw,18px)}
+.page-hero .wave{position:absolute;left:0;right:0;bottom:-2px;line-height:0}
+.page-hero .wave svg{width:100%;height:auto;display:block}
+
+/* FILTERS */
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:44px 22px 8px}
+.filt{background:var(--paper-2);border:1.5px solid var(--line);color:var(--muted);padding:9px 20px;border-radius:100px;font-size:14px;font-weight:600;cursor:pointer;transition:.22s;font-family:inherit}
+.filt:hover{border-color:var(--leaf-soft);color:var(--forest)}
+.filt.active{background:var(--forest);border-color:var(--forest);color:#fff}
+
+/* GRID (masonry via columns) */
+.gallery{padding:26px 0 90px}
+.grid{column-count:4;column-gap:16px}
+@media(max-width:1000px){.grid{column-count:3}}
+@media(max-width:680px){.grid{column-count:2}}
+@media(max-width:420px){.grid{column-count:1}}
+.tile{break-inside:avoid;margin-bottom:16px;border-radius:16px;overflow:hidden;position:relative;cursor:pointer;background:#e8ead9;box-shadow:0 4px 16px rgba(28,74,46,.08);transition:transform .25s,box-shadow .25s}
+.tile:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(28,74,46,.16)}
+.tile img{width:100%;display:block}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;background:linear-gradient(transparent,rgba(12,38,23,.82));color:#fff;font-size:12.5px;font-weight:600;opacity:0;transition:opacity .25s}
+.tile:hover .cap{opacity:1}
+.tile.hide{display:none}
+
+/* plantation "coming soon" tile */
+.soon{break-inside:avoid;margin-bottom:16px;border-radius:16px;border:2px dashed var(--leaf-soft);background:#EDF3EA;padding:40px 22px;text-align:center;color:var(--muted)}
+.soon .ic{font-size:34px;margin-bottom:10px}
+.soon h3{color:var(--forest-deep);font-size:19px;margin-bottom:6px}
+.soon p{font-size:13.5px}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(6,20,12,.94);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:20px}
+.lb.show{opacity:1;pointer-events:auto}
+.lb img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb-close{position:absolute;top:20px;right:24px;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:22px;cursor:pointer;transition:.25s}
+.lb-close:hover{background:var(--leaf);transform:rotate(90deg)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:24px;cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center}
+.lb-nav:hover{background:var(--leaf)}
+.lb-prev{left:20px}.lb-next{right:20px}
+.lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#D5E3D6;font-size:13.5px}
+@media(max-width:600px){.lb-nav{width:44px;height:44px;font-size:20px}.lb-prev{left:8px}.lb-next{right:8px}}
+
+/* CTA + FOOTER */
+.cta-band{background:linear-gradient(150deg,var(--forest),var(--leaf));color:#fff;padding:76px 0;text-align:center}
+.cta-band h2{color:#fff;font-size:clamp(26px,3.8vw,40px);margin-bottom:12px}
+.cta-band p{color:#E4F0E6;max-width:520px;margin:0 auto 26px;font-size:16.5px}
+.cta-band .btn{background:#fff;color:var(--forest)}
+footer.site-foot{background:var(--forest-deep);color:#B7C9BB;padding:54px 0 40px}
+.foot-top{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.foot-logo{display:flex;align-items:center;gap:11px;color:#fff;font-family:'Fraunces',serif;font-weight:700;font-size:19px}
+.foot-logo img{width:38px;height:38px;object-fit:contain;background:#fff;border-radius:8px;padding:3px}
+.socials{display:flex;gap:12px}
+.socials a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;transition:.2s}
+.socials a:hover{background:rgba(255,255,255,.13);transform:translateY(-3px)}
+.socials svg{width:19px;height:19px;fill:#fff}
+.foot-fine{margin-top:26px;font-size:13px;text-align:center;color:#7FA089}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="index.html"><img src="images/dev-logo.png" alt="DEV Foundation logo"> DEV Foundation</a>
+    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="nav-menu" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="index.html#donate" class="btn">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap" style="position:relative;z-index:2">
+    <span class="eyebrow">Our work in pictures</span>
+    <h1>Moments that <em>matter</em></h1>
+    <p>Real photos from our drives and programs across Ahmedabad. Tap any photo to view it full-size.</p>
+  </div>
+  <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path fill="#F5F3E8" d="M0,60 C320,100 640,30 960,60 C1220,85 1360,50 1440,66 L1440,100 L0,100 Z"/></svg></div>
+</section>
+
+<!-- FILTER TABS -->
+<div class="filters" id="filters">
+  <button class="filt active" data-cat="all">All</button>
+  <button class="filt" data-cat="plantation">Plantation</button>
+  <button class="filt" data-cat="books">Books</button>
+  <button class="filt" data-cat="art">Art Competition</button>
+  <button class="filt" data-cat="fire">Fire Safety</button>
+  <button class="filt" data-cat="heat">Heat Awareness</button>
+</div>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="grid" id="grid">
+
+      <!-- PLANTATION-PHOTOS: when your new plantation photos are ready, replace
+           this "soon" block with tiles like the others, using data-cat="plantation":
+           <div class="tile" data-cat="plantation"><img src="images/plantation-1.jpg" alt="Tree plantation drive" loading="lazy"><span class="cap">Tree plantation</span></div>
+      -->
+      <div class="soon" data-cat="plantation">
+        <div class="ic">🌱</div>
+        <h3>Plantation photos coming soon</h3>
+        <p>New drive of 2,000+ trees in the coming weeks — photos will be added here.</p>
+      </div>
+
+      <!-- BOOKS -->
+      <div class="tile" data-cat="books"><img src="images/books-1.jpg" alt="Book donation to students" loading="lazy"><span class="cap">Books donated to students</span></div>
+
+      <!-- ART COMPETITION -->
+      <div class="tile" data-cat="art"><img src="images/art-competition-1.jpg" alt="Clay art competition" loading="lazy"><span class="cap">Clay art competition</span></div>
+      <div class="tile" data-cat="art"><img src="images/art-competition-2.jpeg" alt="Clay art competition" loading="lazy"><span class="cap">Clay art competition</span></div>
+      <div class="tile" data-cat="art"><img src="images/art-competition-3.jpeg" alt="Clay art competition" loading="lazy"><span class="cap">Clay art competition</span></div>
+      <div class="tile" data-cat="art"><img src="images/art-competition-4.jpeg" alt="Clay art competition" loading="lazy"><span class="cap">Clay art competition</span></div>
+      <div class="tile" data-cat="art"><img src="images/art-competition-5.jpeg" alt="Clay art competition" loading="lazy"><span class="cap">Clay art competition</span></div>
+      <div class="tile" data-cat="art"><img src="images/art-competition-6.jpeg" alt="Clay art competition" loading="lazy"><span class="cap">Clay art competition</span></div>
+      <div class="tile" data-cat="art"><img src="images/art-competition-7.jpeg" alt="Clay art competition" loading="lazy"><span class="cap">Clay art competition</span></div>
+
+      <!-- FIRE SAFETY (note: .JPG uppercase, except -9) -->
+      <div class="tile" data-cat="fire"><img src="images/fire-safety-1.JPG" alt="Fire safety training" loading="lazy"><span class="cap">Fire-safety training</span></div>
+      <div class="tile" data-cat="fire"><img src="images/fire-safety-2.JPG" alt="Fire safety training" loading="lazy"><span class="cap">Fire-safety training</span></div>
+      <div class="tile" data-cat="fire"><img src="images/fire-safety-3.JPG" alt="Fire safety training" loading="lazy"><span class="cap">Fire-safety training</span></div>
+      <div class="tile" data-cat="fire"><img src="images/fire-safety-4.JPG" alt="Fire safety training" loading="lazy"><span class="cap">Fire-safety training</span></div>
+      <div class="tile" data-cat="fire"><img src="images/fire-safety-5.JPG" alt="Fire safety training" loading="lazy"><span class="cap">Fire-safety training</span></div>
+      <div class="tile" data-cat="fire"><img src="images/fire-safety-6.JPG" alt="Fire safety training" loading="lazy"><span class="cap">Fire-safety training</span></div>
+      <div class="tile" data-cat="fire"><img src="images/fire-safety-7.JPG" alt="Fire safety training" loading="lazy"><span class="cap">Fire-safety training</span></div>
+      <div class="tile" data-cat="fire"><img src="images/fire-safety-8.JPG" alt="Fire safety training" loading="lazy"><span class="cap">Fire-safety training</span></div>
+      <div class="tile" data-cat="fire"><img src="images/fire-safety-9.jpg" alt="Fire safety training" loading="lazy"><span class="cap">Fire-safety training</span></div>
+
+      <!-- HEAT AWARENESS (.JPG uppercase) -->
+      <div class="tile" data-cat="heat"><img src="images/heatwave-1.JPG" alt="Heat-wave awareness seminar" loading="lazy"><span class="cap">Heat-wave awareness</span></div>
+      <div class="tile" data-cat="heat"><img src="images/heatwave-2.JPG" alt="Heat-wave awareness seminar" loading="lazy"><span class="cap">Heat-wave awareness</span></div>
+      <div class="tile" data-cat="heat"><img src="images/heatwave-3.JPG" alt="Heat-wave awareness seminar" loading="lazy"><span class="cap">Heat-wave awareness</span></div>
+      <div class="tile" data-cat="heat"><img src="images/heatwave-4.JPG" alt="Heat-wave awareness seminar" loading="lazy"><span class="cap">Heat-wave awareness</span></div>
+      <div class="tile" data-cat="heat"><img src="images/heatwave-5.JPG" alt="Heat-wave awareness seminar" loading="lazy"><span class="cap">Heat-wave awareness</span></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Want to be in the next photo?</h2>
+    <p>Join a drive, volunteer, or support the work that fills this gallery.</p>
+    <a href="index.html#donate" class="btn">Donate via UPI</a>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-logo"><img src="images/dev-logo.png" alt="">DEV Foundation</div>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm6.2-.2a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0zM12 7.1a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.5v-7l6.3 3.5-6.3 3.5z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.2 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7 20.4H3.4V9H7v11.4z"/></svg></a>
+      </div>
+    </div>
+    <p class="foot-fine">© 2026 DEV Foundation · Nurturing Nature, Securing Future · Ahmedabad, Gujarat, India</p>
+  </div>
+</footer>
+
+<script>
+/* mobile menu */
+var burger=document.getElementById('burger'),menu=document.getElementById('navMenu');
+burger.addEventListener('click',function(){menu.classList.toggle('open');});
+menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');});});
+
+/* FILTERS */
+var filts=document.querySelectorAll('.filt'),items=document.querySelectorAll('#grid .tile, #grid .soon');
+filts.forEach(function(b){
+  b.addEventListener('click',function(){
+    filts.forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    var cat=b.dataset.cat;
+    items.forEach(function(it){
+      var show = cat==='all' || it.dataset.cat===cat;
+      it.classList.toggle('hide',!show);
+    });
+  });
+});
+
+/* LIGHTBOX */
+var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap');
+var tiles=Array.prototype.slice.call(document.querySelectorAll('#grid .tile'));
+var current=0;
+function visibleTiles(){return tiles.filter(function(t){return !t.classList.contains('hide');});}
+function openLb(tile){
+  var list=visibleTiles();current=list.indexOf(tile);
+  showLb();
+  lb.classList.add('show');document.body.style.overflow='hidden';
+}
+function showLb(){
+  var list=visibleTiles();if(!list.length)return;
+  if(current<0)current=list.length-1;if(current>=list.length)current=0;
+  var img=list[current].querySelector('img'),cap=list[current].querySelector('.cap');
+  lbImg.src=img.src;lbImg.alt=img.alt;lbCap.textContent=cap?cap.textContent:'';
+}
+tiles.forEach(function(t){t.addEventListener('click',function(){openLb(t);});});
+document.getElementById('lbClose').addEventListener('click',closeLb);
+document.getElementById('lbPrev').addEventListener('click',function(e){e.stopPropagation();current--;showLb();});
+document.getElementById('lbNext').addEventListener('click',function(e){e.stopPropagation();current++;showLb();});
+lb.addEventListener('click',function(e){if(e.target===lb)closeLb();});
+function closeLb(){lb.classList.remove('show');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){
+  if(!lb.classList.contains('show'))return;
+  if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowLeft'){current--;showLb();}
+  if(e.key==='ArrowRight'){current++;showLb();}
+});
+</script>
+</body>
+</html>
