@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!-- ========================================================================
+     DEV FOUNDATION - contact.html  (CONTACT + DONATE)
+     Self-contained. Upload just this ONE file.
+     • Working contact form via Netlify Forms (emails you automatically)
+     • Email shown: devarshpanchal406@gmail.com
+     • Phone & social = clearly-marked placeholders to fill in later
+     • Donate section (QR + UPI tap-to-pay)
+     PLACEHOLDERS TO UPDATE LATER: search  ADD-LATER
+     ======================================================================== -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — DEV Foundation</title>
+<meta name="description" content="Get in touch with DEV Foundation, Ahmedabad — volunteer, partner, or donate via UPI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F3E8;--paper-2:#FDFCF4;--forest:#1C4A2E;--forest-deep:#0F2E1C;
+  --leaf:#3E8E41;--leaf-soft:#7CBE6B;--sky:#4A7FA5;--earth:#8A5A34;
+  --gold:#C39B45;--ink:#21301F;--muted:#566152;--line:#E4E2D2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf);margin-bottom:14px}
+.btn{display:inline-block;background:var(--forest);color:#fff;padding:14px 30px;border-radius:100px;font-weight:600;font-size:15px;border:none;cursor:pointer;transition:.25s;font-family:inherit}
+.btn:hover{background:var(--forest-deep);transform:translateY(-2px)}
+
+/* NAV */
+header.site-nav{position:fixed;inset:0 0 auto 0;z-index:60;background:rgba(12,38,23,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:17px;color:#fff}
+.nav-logo img{width:38px;height:38px;object-fit:contain;background:#fff;border-radius:50%;padding:2px}
+.nav-menu{display:flex;gap:22px;align-items:center}
+.nav-menu a{font-size:14px;font-weight:500;color:#D5E3D6;transition:color .2s}
+.nav-menu a:hover,.nav-menu a.active{color:#fff}
+.nav-menu .btn{padding:8px 18px;font-size:13.5px;background:var(--leaf)}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.nav-burger span{width:24px;height:2.5px;background:#fff;border-radius:2px}
+@media(max-width:900px){.nav-burger{display:flex}
+  .nav-menu{position:fixed;top:66px;right:0;left:0;background:rgba(12,38,23,.98);flex-direction:column;padding:24px;gap:18px;transform:translateY(-135%);transition:transform .35s ease}
+  .nav-menu.open{transform:translateY(0)}.nav-menu a{font-size:17px}}
+
+/* PAGE HERO */
+.page-hero{position:relative;padding:150px 0 80px;text-align:center;color:#fff;overflow:hidden;background:linear-gradient(180deg,#0C2617 0%,#123A22 55%,#1C4A2E 100%)}
+.page-hero h1{font-size:clamp(36px,6vw,60px);margin-bottom:14px}
+.page-hero h1 em{font-style:italic;color:var(--leaf-soft)}
+.page-hero .eyebrow{color:var(--leaf-soft)}
+.page-hero p{color:#CFE0D0;max-width:600px;margin:0 auto;font-size:clamp(15.5px,2vw,18px)}
+.page-hero .wave{position:absolute;left:0;right:0;bottom:-2px;line-height:0}
+.page-hero .wave svg{width:100%;height:auto;display:block}
+
+/* CONTACT AREA */
+.contact{padding:70px 0 40px}
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+@media(max-width:860px){.c-grid{grid-template-columns:1fr;gap:40px}}
+.c-info h2{font-size:clamp(26px,3.4vw,36px);color:var(--forest-deep);margin-bottom:16px}
+.c-info>p{color:var(--muted);font-size:16px;margin-bottom:28px;max-width:440px}
+.c-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}
+.c-item .ic{width:48px;height:48px;flex-shrink:0;border-radius:14px;background:#EAF3EC;display:flex;align-items:center;justify-content:center;font-size:22px}
+.c-item .lbl{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--leaf);margin-bottom:3px}
+.c-item .val{font-size:16px;color:var(--ink);font-weight:500;word-break:break-word}
+.c-item .val a{color:var(--forest);font-weight:600}
+.c-item .val.soon{color:var(--muted);font-style:italic;font-weight:400}
+
+/* FORM */
+.c-form{background:var(--paper-2);border:1px solid var(--line);border-radius:24px;padding:34px 32px}
+.c-form h3{font-size:22px;color:var(--forest-deep);margin-bottom:6px}
+.c-form .sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--forest-deep);margin-bottom:7px}
+.field input,.field textarea{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;font-size:15px;font-family:inherit;background:#fff;color:var(--ink);transition:border-color .2s}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--leaf)}
+.field textarea{resize:vertical;min-height:120px}
+.c-form .btn{width:100%;margin-top:4px}
+.form-note{font-size:12px;color:var(--muted);margin-top:14px;text-align:center}
+
+/* DONATE */
+.donate{padding:80px 0 96px;background:radial-gradient(900px 420px at 50% 100%,#EAE7D6 0%,var(--paper) 60%)}
+.don-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:860px){.don-grid{grid-template-columns:1fr;gap:40px}}
+.don-copy h2{font-size:clamp(28px,4vw,42px);color:var(--forest-deep);margin-bottom:16px}
+.don-copy p{color:var(--muted);font-size:16px;margin-bottom:22px;max-width:460px}
+.upi-btn{display:inline-flex;align-items:center;gap:10px;background:var(--forest);color:#fff;font-weight:700;font-size:16px;padding:16px 30px;border-radius:16px;box-shadow:0 14px 34px rgba(28,74,46,.3);transition:.22s;margin-bottom:14px}
+.upi-btn:hover{transform:translateY(-3px)}
+.upi-note{font-size:12.5px;color:var(--muted);max-width:420px}
+.upi-row{display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.upi-id{font-family:ui-monospace,Menlo,monospace;font-size:14px;background:var(--paper-2);padding:9px 14px;border-radius:10px;border:1px solid var(--line);color:var(--forest-deep)}
+.copy-btn{background:var(--leaf);color:#fff;border:none;padding:9px 15px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s}
+.copy-btn:hover{background:var(--forest)}
+.qr-card{background:#fff;border-radius:24px;padding:24px;max-width:340px;margin:0 auto;box-shadow:0 24px 60px rgba(15,46,28,.16)}
+.qr-card img{border-radius:12px}
+.qr-card .cap{text-align:center;font-size:13px;color:var(--muted);margin-top:12px}
+
+/* FOOTER */
+footer.site-foot{background:var(--forest-deep);color:#B7C9BB;padding:54px 0 40px}
+.foot-top{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.foot-logo{display:flex;align-items:center;gap:11px;color:#fff;font-family:'Fraunces',serif;font-weight:700;font-size:19px}
+.foot-logo img{width:38px;height:38px;object-fit:contain;background:#fff;border-radius:8px;padding:3px}
+.socials{display:flex;gap:12px}
+.socials a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;transition:.2s}
+.socials a:hover{background:rgba(255,255,255,.13);transform:translateY(-3px)}
+.socials svg{width:19px;height:19px;fill:#fff}
+.foot-fine{margin-top:26px;font-size:13px;text-align:center;color:#7FA089}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="index.html"><img src="images/dev-logo.png" alt="DEV Foundation logo"> DEV Foundation</a>
+    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="nav-menu" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="#donate" class="btn">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap" style="position:relative;z-index:2">
+    <span class="eyebrow">Get in touch</span>
+    <h1>Let's <em>talk</em></h1>
+    <p>Volunteer, partner, ask a question, or just say hello — we'd love to hear from you.</p>
+  </div>
+  <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path fill="#F5F3E8" d="M0,60 C320,100 640,30 960,60 C1220,85 1360,50 1440,66 L1440,100 L0,100 Z"/></svg></div>
+</section>
+
+<section class="contact">
+  <div class="wrap c-grid">
+
+    <!-- LEFT: info -->
+    <div class="c-info">
+      <h2>Reach out</h2>
+      <p>Whether you want to join a drive, support a program, or work together — send us a message and we'll get back to you.</p>
+
+      <div class="c-item">
+        <div class="ic">✉️</div>
+        <div>
+          <div class="lbl">Email</div>
+          <div class="val"><a href="mailto:devarshpanchal406@gmail.com">devarshpanchal406@gmail.com</a></div>
+        </div>
+      </div>
+
+      <!-- ADD-LATER: replace the "coming soon" text with your real number, e.g.
+           <div class="val"><a href="tel:+919000000000">+91 90000 00000</a></div> -->
+      <div class="c-item">
+        <div class="ic">📞</div>
+        <div>
+          <div class="lbl">Phone / WhatsApp</div>
+          <div class="val soon">Coming soon</div>
+        </div>
+      </div>
+
+      <div class="c-item">
+        <div class="ic">📍</div>
+        <div>
+          <div class="lbl">Location</div>
+          <div class="val">Ahmedabad, Gujarat, India</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Netlify form -->
+    <div class="c-form">
+      <h3>Send us a message</h3>
+      <p class="sub">We'll reply to your email as soon as we can.</p>
+
+      <!-- Netlify Forms: the data-netlify attribute makes it work automatically once deployed -->
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" required placeholder="e.g. Priya Shah">
+        </div>
+        <div class="field">
+          <label for="email">Your email</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="How would you like to help, or what would you like to know?"></textarea>
+        </div>
+        <button type="submit" class="btn">Send message</button>
+        <p class="form-note">Your message goes straight to our inbox.</p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <div class="wrap don-grid">
+    <div class="don-copy">
+      <span class="eyebrow">Support the work</span>
+      <h2>Or donate in one tap</h2>
+      <p>On your phone, tap the button and your UPI app opens with our details filled in. On a computer, scan the QR with any UPI app.</p>
+      <a class="upi-btn" href="upi://pay?pa=cf2e5hdyrmdq@gscb&pn=DEV%20FOUNDATION&cu=INR">⚡ Pay with any UPI app</a>
+      <p class="upi-note">GPay · PhonePe · Paytm · BHIM — via The Gujarat State Co-op. Bank Ltd.</p>
+      <div class="upi-row">
+        <span class="upi-id" id="devUpi">cf2e5hdyrmdq@gscb</span>
+        <button class="copy-btn" id="copyBtn">Copy UPI ID</button>
+      </div>
+    </div>
+    <div class="qr-card">
+      <img src="images/dev-qr.png" alt="DEV Foundation UPI donation QR code">
+      <p class="cap">Scan &amp; pay · DEV Foundation</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-logo"><img src="images/dev-logo.png" alt="">DEV Foundation</div>
+      <!-- ADD-LATER: paste real social links into href="" -->
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm6.2-.2a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0zM12 7.1a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.5v-7l6.3 3.5-6.3 3.5z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.2 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7 20.4H3.4V9H7v11.4z"/></svg></a>
+      </div>
+    </div>
+    <p class="foot-fine">© 2026 DEV Foundation · Nurturing Nature, Securing Future · Ahmedabad, Gujarat, India</p>
+  </div>
+</footer>
+
+<script>
+var burger=document.getElementById('burger'),menu=document.getElementById('navMenu');
+burger.addEventListener('click',function(){menu.classList.toggle('open');});
+menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');});});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){var id=a.getAttribute('href');if(id.length<2)return;var t=document.querySelector(id);if(!t)return;e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-56,behavior:'smooth'});});
+});
+document.getElementById('copyBtn').addEventListener('click',function(){
+  var b=this;navigator.clipboard.writeText(document.getElementById('devUpi').innerText).then(function(){var o=b.innerText;b.innerText='Copied!';setTimeout(function(){b.innerText=o;},1600);});
+});
+</script>
+</body>
+</html>
