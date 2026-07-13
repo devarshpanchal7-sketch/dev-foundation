@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<!-- ========================================================================
+     DEV FOUNDATION — index.html  (HOME, v3 "The Giving Tree")
+     • Layered forest hero with floating leaves
+     • Interactive tree timeline: CLICK any leaf-card to open its story
+     • Donate: QR + tap-to-pay UPI button (opens GPay/PhonePe on mobile)
+     • Works on mobile / tablet / laptop
+     ======================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEV Foundation — Nurturing Nature, Securing Future</title>
+  <meta name="description" content="DEV Foundation, Ahmedabad — 50,000+ trees planted since 2011, 1,000+ books donated, child-safety programs. Explore our journey and donate via UPI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="site-nav" id="siteNav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="index.html"><img src="images/dev-logo.png" alt="DEV Foundation logo"> DEV Foundation</a>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-menu" id="navMenu">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="#donate" class="btn">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO: layered forest ============ -->
+<section class="hero" id="top">
+  <!-- floating leaves (positions vary) -->
+  <span class="leaf-float" style="left:8%;animation-duration:14s">🍃</span>
+  <span class="leaf-float" style="left:26%;animation-duration:18s;animation-delay:-6s">🍂</span>
+  <span class="leaf-float" style="left:55%;animation-duration:16s;animation-delay:-3s">🍃</span>
+  <span class="leaf-float" style="left:78%;animation-duration:20s;animation-delay:-10s">🍂</span>
+  <span class="leaf-float" style="left:90%;animation-duration:15s;animation-delay:-8s">🍃</span>
+
+  <div class="hero-content">
+    <!-- 3D medallion: floats, has orbit rings, and tilts with your mouse -->
+    <div class="medallion" id="medWrap">
+      <div class="medallion-inner" id="medallion">
+        <span class="ring"></span><span class="ring r2"></span>
+        <img src="images/dev-logo.png" alt="DEV Foundation">
+      </div>
+    </div>
+    <span class="eyebrow">Since 2011 · Ahmedabad, Gujarat</span>
+    <h1>Fourteen years of <em>nurturing nature</em>, securing the future</h1>
+    <p class="lead">What began as a family planting a tree on every birthday has grown into 50,000 trees, a thousand books, and safer, brighter childhoods across Ahmedabad.</p>
+    <div class="hero-cta">
+      <a href="#tree" class="btn">Explore our journey 🌳</a>
+      <a href="#donate" class="btn ghost">Donate</a>
+    </div>
+  </div>
+
+  <!-- layered hills for depth -->
+  <div class="hero-layer l-back"><svg viewBox="0 0 1440 190" preserveAspectRatio="none"><path fill="#16412a" d="M0,120 C240,60 420,150 720,110 C1020,70 1200,140 1440,90 L1440,190 L0,190 Z"/></svg></div>
+  <div class="hero-layer l-mid"><svg viewBox="0 0 1440 160" preserveAspectRatio="none"><path fill="#1d5434" d="M0,110 C300,150 560,60 860,100 C1160,140 1300,80 1440,110 L1440,160 L0,160 Z"/></svg></div>
+  <div class="hero-layer l-front"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path fill="#F5F3E8" d="M0,70 C320,110 640,40 960,70 C1220,95 1360,60 1440,75 L1440,120 L0,120 Z"/></svg></div>
+
+  <div class="scroll-hint">Scroll — watch the tree grow</div>
+</section>
+
+<!-- ============ THE GIVING TREE (click the cards) ============ -->
+<section class="tree-sec" id="tree">
+  <div class="wrap">
+    <div class="tree-head">
+      <span class="eyebrow">Our journey</span>
+      <h2>The Giving Tree</h2>
+      <p>Every branch is a real project. The trunk grows as you scroll — and every card opens.</p>
+      <span class="tree-hint">👆 Tap any card to read its story</span>
+    </div>
+
+    <div class="tree" id="treeRoot">
+      <div class="trunk" id="trunk"></div>
+
+      <!-- ====== BRANCH 1 : 2011 origins ====== -->
+      <div class="branch rv">
+        <button class="node" aria-expanded="false" aria-controls="d1">
+          <span class="leafdot"></span>
+          <span class="yr">2011 · WHERE IT BEGAN</span>
+          <h3>A birthday, a tree, an idea</h3>
+          <p class="peek">Kartik Panchal plants a seed — literally and figuratively.</p>
+          <span class="openicon">+</span>
+        </button>
+        <div class="detail" id="d1">
+          <div class="detail-inner">
+            <p>The idea for DEV Foundation took root with Kartik Panchal. The family began planting a tree on every member's birthday and every World Environment Day — a small ritual that quietly became a tradition, then a mission.</p>
+            <span class="fact">🌱 Started 2011</span><span class="fact">👨‍👩‍👦 Family-led</span>
+            <div class="photo-slot">Photo slot — early plantation days (add later)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== BRANCH 2 : 50,000 trees ====== -->
+      <div class="branch rv">
+        <button class="node" aria-expanded="false" aria-controls="d2">
+          <span class="leafdot"></span>
+          <span class="yr">2011 – TODAY</span>
+          <h3>50,000 trees for Ahmedabad</h3>
+          <p class="peek">Planted across the city — and gifted to people.</p>
+          <span class="openicon">+</span>
+        </button>
+        <div class="detail" id="d2">
+          <div class="detail-inner">
+            <p>Year after year, tree by tree, DEV Foundation has planted and gifted around <strong>50,000 trees</strong> in and around Ahmedabad. Some stand in public spaces; many were gifted to people to plant and care for themselves — spreading the habit, not just the trees.</p>
+            <span class="fact">🌳 ~50,000 trees</span><span class="fact">📍 Ahmedabad</span><span class="fact">🎁 Gifted to citizens</span>
+            <div class="photo-slot">Photo slot — plantation drives (add later)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== BRANCH 3 : 1,000 books ====== -->
+      <div class="branch rv">
+        <button class="node" aria-expanded="false" aria-controls="d3">
+          <span class="leafdot"></span>
+          <span class="yr">BOOKS &amp; LEARNING</span>
+          <h3>1,000 books, 1,000 sparks</h3>
+          <p class="peek">Biographies of great lives, gifted to government-school students.</p>
+          <span class="openicon">+</span>
+        </button>
+        <div class="detail" id="d3">
+          <div class="detail-inner">
+            <p>We donated over <strong>1,000 books</strong> — autobiographies and biographies of successful people — to government-school students. The idea is simple: a child who reads how great lives were built starts imagining their own.</p>
+            <span class="fact">📚 1,000+ books</span><span class="fact">🏫 Govt-school students</span>
+            <div class="photo-slot">Photo slot — book donation (add later)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== BRANCH 4 : COVID relief ====== -->
+      <div class="branch rv">
+        <button class="node" aria-expanded="false" aria-controls="d4">
+          <span class="leafdot"></span>
+          <span class="yr">2020 · COVID-19</span>
+          <h3>Standing with the underserved</h3>
+          <p class="peek">Relief donations when the city needed it most.</p>
+          <span class="openicon">+</span>
+        </button>
+        <div class="detail" id="d4">
+          <div class="detail-inner">
+            <p>During the COVID-19 pandemic, DEV Foundation directed donations to underserved families — support given quietly, when it mattered most.</p>
+            <span class="fact">🤝 Community relief</span><span class="fact">🦠 Pandemic response</span>
+            <div class="photo-slot">Photo slot — relief work (add later)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== BRANCH 5 : art competition ====== -->
+      <div class="branch rv">
+        <button class="node" aria-expanded="false" aria-controls="d5">
+          <span class="leafdot"></span>
+          <span class="yr">2025 · CREATIVITY</span>
+          <h3>Clay, colour and 100 kids</h3>
+          <p class="peek">A creative art competition on clay pots and water cups.</p>
+          <span class="openicon">+</span>
+        </button>
+        <div class="detail" id="d5">
+          <div class="detail-inner">
+            <p>We brought <strong>100 students</strong> together for a creative art competition — painting clay pots and clay water cups. Traditional materials, young imaginations, and a room full of colour.</p>
+            <span class="fact">🎨 100 students</span><span class="fact">🏺 Clay pots &amp; cups</span>
+            <div class="photo-slot">Photo slot — art competition (add later)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== BRANCH 6 : fire safety ====== -->
+      <div class="branch rv">
+        <button class="node" aria-expanded="false" aria-controls="d6">
+          <span class="yr">RECENT · SAFETY</span>
+          <span class="leafdot"></span>
+          <h3>Fire safety for 300 children</h3>
+          <p class="peek">Hands-on training for orphaned kids, with a fire-safety expert.</p>
+          <span class="openicon">+</span>
+        </button>
+        <div class="detail" id="d6">
+          <div class="detail-inner">
+            <p>With a fire-safety expert, we trained <strong>300 orphaned children</strong> in what to do in danger — run in three batches of 100 students over six months, so every group got real attention, not a lecture.</p>
+            <span class="fact">🛟 300 children</span><span class="fact">👩‍🚒 Expert-led</span><span class="fact">🗓 3 batches / 6 months</span>
+            <div class="photo-slot">Photo slot — fire-safety drill (add later)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== BRANCH 7 : heatwave seminar ====== -->
+      <div class="branch rv">
+        <button class="node" aria-expanded="false" aria-controls="d7">
+          <span class="leafdot"></span>
+          <span class="yr">2026 · SUMMER</span>
+          <h3>Beating the record heat</h3>
+          <p class="peek">A heat-wave &amp; heat-stroke seminar for children.</p>
+          <span class="openicon">+</span>
+        </button>
+        <div class="detail" id="d7">
+          <div class="detail-inner">
+            <p>As Ahmedabad faced a record-breaking summer, we ran a seminar teaching children how to recognise heat stroke and keep themselves cool and safe — practical knowledge for a warming world, which is exactly where environment work meets child welfare.</p>
+            <span class="fact">☀️ Heat-stroke awareness</span><span class="fact">🧒 For children</span>
+            <div class="photo-slot">Photo slot — seminar (add later)</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tree -->
+  </div>
+</section>
+
+<!-- ============ IMPACT COUNTERS ============ -->
+<section class="impact">
+  <div class="wrap">
+    <h2>Fourteen years, in numbers</h2>
+    <p class="sub">Counted the honest way — year after year since 2011.</p>
+    <div class="counters">
+      <div class="counter rv"><div class="n" data-to="50000" data-suffix="+">0</div><div class="l">Trees planted &amp; gifted</div></div>
+      <div class="counter rv"><div class="n" data-to="1000" data-suffix="+">0</div><div class="l">Books donated</div></div>
+      <div class="counter rv"><div class="n" data-to="400" data-suffix="+">0</div><div class="l">Children in our programs</div></div>
+      <div class="counter rv"><div class="n" data-to="2011" data-plain="1">0</div><div class="l">Serving since</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DONATE: QR + UPI tap-to-pay ============ -->
+<section class="donate" id="donate">
+  <div class="wrap don-grid">
+    <div class="don-copy rv">
+      <span class="eyebrow">Support the work</span>
+      <h2>Donate in one tap</h2>
+      <p>On your phone? Tap the button and your UPI app opens with DEV Foundation's details already filled in. On a computer? Scan the QR with any UPI app.</p>
+      <!-- UPI deep link: opens GPay / PhonePe / Paytm on mobile -->
+      <a class="upi-btn" href="upi://pay?pa=cf2e5hdyrmdq@gscb&pn=DEV%20FOUNDATION&cu=INR">
+        <span class="em">⚡</span> Pay with any UPI app
+      </a>
+      <p class="upi-note">Works on mobile with GPay, PhonePe, Paytm, BHIM &amp; more. Donations go directly to DEV Foundation's bank account (The Gujarat State Co-op. Bank).</p>
+      <div class="upi-row">
+        <span class="upi-id" id="devUpi">cf2e5hdyrmdq@gscb</span>
+        <button class="copy-btn" id="copyBtn">Copy UPI ID</button>
+      </div>
+    </div>
+    <div class="qr-card rv" id="qrCard">
+      <img src="images/dev-qr.png" alt="DEV Foundation UPI donation QR — scan with any UPI app">
+      <p class="cap">Scan &amp; pay · DEV Foundation</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-logo"><img src="images/dev-logo.png" alt="">DEV Foundation</div>
+      <!-- EDIT LATER: paste real social links into href="" -->
+      <div class="socials">
+        <a href="#" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm6.2-.2a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0zM12 7.1a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4z"/></svg></a>
+        <a href="#" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.5v-7l6.3 3.5-6.3 3.5z"/></svg></a>
+        <a href="#" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.2 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7 20.4H3.4V9H7v11.4z"/></svg></a>
+      </div>
+    </div>
+    <p class="foot-fine">© 2026 DEV Foundation · Nurturing Nature, Securing Future · Ahmedabad, Gujarat, India</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- mobile menu ---------- */
+var burger=document.getElementById('burger'),menu=document.getElementById('navMenu');
+burger.addEventListener('click',function(){
+  var open=menu.classList.toggle('open');
+  burger.setAttribute('aria-expanded',open);
+});
+menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');burger.setAttribute('aria-expanded',false);});});
+
+/* ---------- smooth scroll for in-page links (with fixed-nav offset) ---------- */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var id=a.getAttribute('href');if(id.length<2)return;
+    var target=document.querySelector(id);if(!target)return;
+    e.preventDefault();
+    window.scrollTo({top:target.getBoundingClientRect().top+window.pageYOffset-56,behavior:'smooth'});
+  });
+});
+
+/* ---------- 3D tilt on the hero medallion (desktop, motion-safe) ---------- */
+if(window.matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches){
+  var med=document.getElementById('medallion'),medWrap=document.getElementById('medWrap');
+  if(med){
+    medWrap.addEventListener('mousemove',function(ev){
+      var r=med.getBoundingClientRect();
+      var x=(ev.clientX-r.left)/r.width-.5,y=(ev.clientY-r.top)/r.height-.5;
+      med.style.transform='rotateY('+(x*20)+'deg) rotateX('+(-y*20)+'deg)';
+      med.style.animation='none';
+    });
+    medWrap.addEventListener('mouseleave',function(){med.style.transform='';med.style.animation='';});
+  }
+}
+
+/* ---------- nav darkens after hero ---------- */
+var nav=document.getElementById('siteNav');
+window.addEventListener('scroll',function(){
+  nav.classList.toggle('solid',window.scrollY>60);
+},{passive:true});
+
+/* ---------- scroll reveal + counters ---------- */
+var obs=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      runCount(e.target);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.18});
+document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+
+function runCount(scope){
+  (scope.querySelectorAll?scope.querySelectorAll('.n[data-to]'):[]).forEach(function(el){
+    if(el.dataset.done)return;el.dataset.done=1;
+    var to=+el.dataset.to,plain=el.dataset.plain,suf=el.dataset.suffix||'',start=null,dur=1500;
+    function step(t){
+      if(!start)start=t;
+      var p=Math.min((t-start)/dur,1),v=Math.floor(p*to);
+      el.textContent=(plain?v:v.toLocaleString('en-IN'))+(p===1?suf:'');
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+/* ---------- the trunk grows as you scroll ---------- */
+var trunk=document.getElementById('trunk'),treeRoot=document.getElementById('treeRoot');
+function growTrunk(){
+  if(!trunk)return;
+  var r=treeRoot.getBoundingClientRect(),vh=window.innerHeight;
+  var progress=Math.min(Math.max((vh*0.8-r.top)/(r.height),0),1);
+  trunk.style.setProperty('--trunk-hide',1-progress);
+}
+window.addEventListener('scroll',growTrunk,{passive:true});
+growTrunk();
+
+/* ---------- click a leaf card to open its story ---------- */
+document.querySelectorAll('.node').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',!open);
+    panel.style.maxHeight=open?'0':(panel.scrollHeight+'px');
+  });
+});
+
+/* ---------- copy UPI id ---------- */
+document.getElementById('copyBtn').addEventListener('click',function(){
+  var b=this;
+  navigator.clipboard.writeText(document.getElementById('devUpi').innerText).then(function(){
+    var o=b.innerText;b.innerText='Copied!';setTimeout(function(){b.innerText=o;},1600);
+  });
+});
+
+/* ---------- gentle 3D tilt on the QR card (desktop) ---------- */
+if(window.matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches){
+  var qc=document.getElementById('qrCard');
+  qc.addEventListener('mousemove',function(ev){
+    var r=qc.getBoundingClientRect();
+    var x=(ev.clientX-r.left)/r.width-.5,y=(ev.clientY-r.top)/r.height-.5;
+    qc.style.transform='rotateY('+(x*8)+'deg) rotateX('+(-y*8)+'deg)';
+  });
+  qc.addEventListener('mouseleave',function(){qc.style.transform='';});
+}
+</script>
+</body>
+</html>

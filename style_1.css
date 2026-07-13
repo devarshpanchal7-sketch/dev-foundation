@@ -1,0 +1,231 @@
+/* ==========================================================================
+   DEV FOUNDATION — style.css  (v3 "The Giving Tree")
+   One file styles every page. Colours live at the top; sections below.
+   ========================================================================== */
+
+/* ---- 1. Colours & type tokens ---- */
+:root{
+  --paper:#F5F3E8;
+  --paper-2:#FDFCF4;
+  --forest:#1C4A2E;
+  --forest-deep:#0C2617;
+  --leaf:#3E8E41;
+  --leaf-soft:#7CBE6B;
+  --sky:#4A7FA5;
+  --earth:#8A5A34;
+  --gold:#C39B45;
+  --ink:#21301F;
+  --muted:#566152;
+  --line:#E2E0CE;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf);margin-bottom:16px}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--forest);color:#fff;padding:13px 28px;border-radius:100px;font-weight:600;font-size:15px;border:none;cursor:pointer;transition:background .25s,transform .25s,box-shadow .25s}
+.btn:hover{background:var(--forest-deep);transform:translateY(-2px);box-shadow:0 12px 26px rgba(28,74,46,.28)}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+.btn.ghost:hover{background:rgba(255,255,255,.14);box-shadow:none}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+/* ---- 2. Navigation ---- */
+header.site-nav{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(12,38,23,.55);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);transition:background .3s}
+header.site-nav.solid{background:rgba(12,38,23,.92)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:17px;color:#fff}
+.nav-logo img{width:38px;height:38px;object-fit:contain;background:#fff;border-radius:50%;padding:2px}
+.nav-menu{display:flex;gap:22px;align-items:center}
+.nav-menu a{font-size:14px;font-weight:500;color:#D5E3D6;transition:color .2s}
+.nav-menu a:hover,.nav-menu a.active{color:#fff}
+.nav-menu .btn{padding:8px 18px;font-size:13.5px;background:var(--leaf)}
+.nav-menu .btn:hover{background:var(--leaf-soft);color:var(--forest-deep)}
+/* mobile hamburger */
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.nav-burger span{width:24px;height:2.5px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+@media(max-width:900px){
+  .nav-burger{display:flex}
+  .nav-menu{position:fixed;top:66px;right:0;left:0;background:rgba(12,38,23,.97);flex-direction:column;padding:26px 24px 30px;gap:20px;transform:translateY(-130%);transition:transform .35s ease;border-bottom:1px solid rgba(255,255,255,.1)}
+  .nav-menu.open{transform:translateY(0)}
+  .nav-menu a{font-size:17px}
+}
+
+/* ---- 3. Hero: layered forest ---- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(180deg,#0C2617 0%,#123A22 45%,#1C4A2E 100%);color:#fff;padding:110px 0 90px}
+.hero-layer{position:absolute;left:0;right:0;bottom:-2px;pointer-events:none}
+.hero-layer svg{display:block;width:100%;height:auto}
+.l-back{opacity:.35}
+.l-mid{opacity:.6}
+.l-front{opacity:1}
+.leaf-float{position:absolute;font-size:22px;opacity:.5;animation:fall linear infinite}
+@keyframes fall{
+  0%{transform:translateY(-8vh) rotate(0deg)}
+  100%{transform:translateY(108vh) rotate(340deg)}
+}
+.hero-content{position:relative;z-index:3;max-width:780px;padding:0 22px}
+/* 3D logo medallion (floats + tilts with the mouse) */
+.medallion{perspective:900px;margin:0 auto 28px;width:190px}
+.medallion-inner{width:190px;height:190px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%,#ffffff,#EFF3E9);box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 40px rgba(124,190,107,.25);transform-style:preserve-3d;transition:transform .2s ease;animation:float 6s ease-in-out infinite}
+.medallion-inner img{width:66%;height:66%;object-fit:contain;transform:translateZ(36px)}
+.ring{position:absolute;inset:-14px;border-radius:50%;border:2px dashed var(--leaf-soft);opacity:.55;animation:spin 26s linear infinite}
+.ring.r2{inset:-28px;border-color:#7FB3D8;animation-duration:40s;animation-direction:reverse;opacity:.4}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero .eyebrow{color:var(--leaf-soft)}
+.hero h1{font-size:clamp(40px,7.6vw,76px);margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--leaf-soft)}
+.hero .lead{font-size:clamp(16.5px,2.3vw,20px);color:#CFE0D0;max-width:600px;margin:0 auto 34px}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero .btn{background:var(--leaf)}
+.hero .btn:hover{background:var(--leaf-soft);color:var(--forest-deep)}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;color:#9FBBA6;font-size:12px;letter-spacing:.14em;text-transform:uppercase;animation:hint 2.4s ease-in-out infinite}
+@keyframes hint{0%,100%{transform:translate(-50%,0);opacity:.7}50%{transform:translate(-50%,8px);opacity:1}}
+
+/* ---- 4. THE GIVING TREE (interactive timeline) ---- */
+.tree-sec{position:relative;padding:96px 0 60px;background:
+  radial-gradient(1200px 500px at 50% 0%,#EDEADA 0%,var(--paper) 55%)}
+.tree-head{text-align:center;max-width:640px;margin:0 auto 24px}
+.tree-head h2{font-size:clamp(30px,4.6vw,48px);color:var(--forest-deep);margin-bottom:14px}
+.tree-head p{color:var(--muted);font-size:16.5px}
+.tree-hint{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:13.5px;color:var(--leaf);font-weight:600;background:#EAF3EC;border:1px solid #D3E6D6;padding:8px 16px;border-radius:100px}
+
+.tree{position:relative;max-width:900px;margin:40px auto 0;padding-bottom:40px}
+/* the growing trunk */
+.trunk{position:absolute;left:50%;top:0;bottom:0;width:10px;transform:translateX(-50%);border-radius:8px;background:linear-gradient(180deg,var(--leaf) 0%,var(--earth) 100%);transform-origin:top;overflow:hidden}
+.trunk::after{content:"";position:absolute;inset:0;background:var(--paper);transform-origin:bottom;transform:scaleY(var(--trunk-hide,1));transition:transform .1s linear}
+/* each milestone = a branch */
+.branch{position:relative;width:calc(50% - 48px);margin-bottom:34px}
+.branch:nth-child(odd){margin-right:auto}
+.branch:nth-child(even){margin-left:auto}
+/* the wooden connector from trunk to node */
+.branch::before{content:"";position:absolute;top:30px;width:48px;height:5px;border-radius:4px;background:var(--earth);opacity:.8}
+.branch:nth-child(odd)::before{right:-48px}
+.branch:nth-child(even)::before{left:-48px}
+/* leaf node button */
+.node{width:100%;text-align:left;background:var(--paper-2);border:1.5px solid var(--line);border-radius:20px;padding:20px 24px;cursor:pointer;transition:transform .22s,box-shadow .22s,border-color .22s;position:relative}
+.node:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(28,74,46,.13);border-color:var(--leaf-soft)}
+.node .yr{font-family:'Fraunces',serif;font-size:13.5px;font-weight:700;letter-spacing:.1em;color:var(--gold)}
+.node h3{font-size:clamp(18px,2.4vw,22px);color:var(--forest-deep);margin:6px 0 4px}
+.node .peek{font-size:14px;color:var(--muted)}
+.node .leafdot{position:absolute;top:22px;width:20px;height:20px;border-radius:50% 50% 50% 4px;background:var(--leaf);transform:rotate(45deg);box-shadow:0 0 0 5px #EAF3EC;transition:transform .3s,background .3s}
+.branch:nth-child(odd) .leafdot{right:-60px}
+.branch:nth-child(even) .leafdot{left:-60px}
+.node[aria-expanded="true"] .leafdot{background:var(--gold);transform:rotate(45deg) scale(1.25)}
+.node .openicon{position:absolute;right:20px;top:22px;width:26px;height:26px;border-radius:50%;background:#EAF3EC;color:var(--forest);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;transition:transform .3s}
+.node[aria-expanded="true"] .openicon{transform:rotate(45deg)}
+/* the expanding detail panel */
+.detail{max-height:0;overflow:hidden;transition:max-height .5s ease;background:transparent}
+.detail-inner{background:var(--forest-deep);color:#DFEADF;border-radius:20px;padding:26px 28px;margin-top:12px}
+.detail-inner p{font-size:15px;margin-bottom:12px;color:#C9DACB}
+.detail-inner .fact{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:var(--leaf-soft);font-weight:600;font-size:13px;border-radius:100px;padding:6px 14px;margin:4px 6px 0 0}
+.detail-inner .photo-slot{margin-top:14px;border:1.5px dashed rgba(255,255,255,.3);border-radius:14px;padding:20px;text-align:center;font-size:13px;color:#9FBBA6}
+.detail-inner .photo-slot img{border-radius:12px;margin:0 auto}
+/* tree responsive: single column */
+@media(max-width:760px){
+  .trunk{left:16px;transform:none}
+  .branch{width:100%;padding-left:52px}
+  .branch:nth-child(odd),.branch:nth-child(even){margin:0 0 26px 0}
+  .branch::before{left:16px!important;right:auto!important;width:36px;top:28px}
+  .branch .leafdot{left:6px!important;right:auto!important;top:20px}
+}
+
+/* ---- 5. Impact counters ---- */
+.impact{background:var(--forest-deep);color:#fff;padding:70px 0}
+.impact h2{color:#fff;font-size:clamp(26px,3.4vw,36px);text-align:center;margin-bottom:8px}
+.impact .sub{text-align:center;color:#9FBBA6;margin-bottom:44px;font-size:15px}
+.counters{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.counter{text-align:center;padding:24px 12px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.counter .n{font-family:'Fraunces',serif;font-size:clamp(32px,4.4vw,50px);font-weight:700;color:var(--leaf-soft);line-height:1}
+.counter .l{font-size:13px;color:#C0D2C4;margin-top:8px}
+@media(max-width:760px){.counters{grid-template-columns:repeat(2,1fr)}}
+
+/* ---- 6. Donate (QR + UPI tap-to-pay) ---- */
+.donate{padding:96px 0;background:
+  radial-gradient(900px 420px at 50% 100%,#E9E6D5 0%,var(--paper) 60%)}
+.don-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:860px){.don-grid{grid-template-columns:1fr}}
+.don-copy h2{font-size:clamp(30px,4.4vw,46px);color:var(--forest-deep);margin-bottom:16px}
+.don-copy p{color:var(--muted);font-size:16.5px;margin-bottom:22px;max-width:480px}
+.upi-btn{display:inline-flex;align-items:center;gap:10px;background:var(--forest);color:#fff;font-weight:700;font-size:16px;padding:16px 30px;border-radius:16px;box-shadow:0 14px 34px rgba(28,74,46,.3);transition:transform .22s,box-shadow .22s;margin-bottom:14px}
+.upi-btn:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(28,74,46,.36)}
+.upi-btn .em{font-size:20px}
+.upi-note{font-size:13px;color:var(--muted)}
+.upi-row{display:flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.upi-id{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:14.5px;background:var(--paper-2);padding:9px 15px;border-radius:10px;border:1px solid var(--line);color:var(--forest-deep)}
+.copy-btn{background:var(--leaf);color:#fff;border:none;padding:10px 16px;border-radius:10px;font-size:13.5px;font-weight:700;cursor:pointer;transition:background .2s}
+.copy-btn:hover{background:var(--forest)}
+.qr-card{background:#fff;border-radius:26px;padding:26px;box-shadow:0 28px 70px rgba(15,46,28,.18);max-width:380px;margin:0 auto;transform-style:preserve-3d;transition:transform .2s ease}
+.qr-card img{border-radius:14px}
+.qr-card .cap{text-align:center;font-size:13.5px;color:var(--muted);margin-top:14px}
+
+/* ---- 7. Footer ---- */
+footer.site-foot{background:var(--forest-deep);color:#B7C9BB;padding:54px 0 40px}
+.foot-top{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.foot-logo{display:flex;align-items:center;gap:11px;color:#fff;font-family:'Fraunces',serif;font-weight:700;font-size:19px}
+.foot-logo img{width:38px;height:38px;object-fit:contain;background:#fff;border-radius:8px;padding:3px}
+.socials{display:flex;gap:12px}
+.socials a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+.socials a:hover{background:rgba(255,255,255,.13);transform:translateY(-3px)}
+.socials svg{width:19px;height:19px;fill:#fff}
+.foot-fine{margin-top:26px;font-size:13px;text-align:center;color:#7FA089}
+
+a:focus-visible,button:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:8px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.trunk::after{display:none}}
+
+/* ==========================================================================
+   ABOUT PAGE styles (about.html)
+   ========================================================================== */
+
+/* short dark page-hero (reused by inner pages) */
+.page-hero{position:relative;padding:150px 0 90px;text-align:center;color:#fff;overflow:hidden;background:linear-gradient(180deg,#0C2617 0%,#123A22 55%,#1C4A2E 100%)}
+.page-hero .eyebrow{color:var(--leaf-soft)}
+.page-hero h1{font-size:clamp(36px,6vw,60px);margin-bottom:14px}
+.page-hero h1 em{font-style:italic;color:var(--leaf-soft)}
+.page-hero p{color:#CFE0D0;max-width:600px;margin:0 auto;font-size:clamp(15.5px,2vw,18px)}
+.page-hero .hero-layer{position:absolute;left:0;right:0;bottom:-2px;pointer-events:none}
+.page-hero .hero-layer svg{display:block;width:100%;height:auto}
+
+/* chapters: the story told in numbered acts */
+.chapters{padding:90px 0 40px}
+.chapter{display:grid;grid-template-columns:170px 1fr;gap:40px;align-items:start;margin-bottom:64px}
+@media(max-width:720px){.chapter{grid-template-columns:1fr;gap:14px}}
+.ch-mark{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(40px,6vw,64px);color:var(--forest);opacity:.16;line-height:1;position:sticky;top:96px}
+@media(max-width:720px){.ch-mark{position:static}}
+.chapter h2{font-size:clamp(24px,3.4vw,34px);color:var(--forest-deep);margin-bottom:14px}
+.chapter p{color:var(--muted);font-size:16.5px;margin-bottom:14px;max-width:640px}
+.chapter .pull{border-left:3px solid var(--gold);padding:8px 0 8px 20px;font-family:'Fraunces',serif;font-style:italic;font-size:19px;color:var(--forest-deep);margin:20px 0 4px;max-width:560px}
+
+/* values strip */
+.values{background:var(--forest-deep);color:#fff;padding:80px 0}
+.values h2{color:#fff;text-align:center;font-size:clamp(26px,3.6vw,38px);margin-bottom:10px}
+.values .sub{text-align:center;color:#9FBBA6;margin-bottom:44px;font-size:15px}
+.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:760px){.vals{grid-template-columns:1fr}}
+.val{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);border-radius:20px;padding:30px 26px;text-align:center}
+.val .vi{font-size:30px;margin-bottom:14px}
+.val h3{color:#fff;font-size:20px;margin-bottom:8px}
+.val p{color:#C0D2C4;font-size:14px}
+
+/* president block */
+.president{padding:96px 0}
+.pres-grid{display:grid;grid-template-columns:340px 1fr;gap:54px;align-items:center}
+@media(max-width:860px){.pres-grid{grid-template-columns:1fr;gap:34px}}
+.portrait{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(150deg,var(--forest),var(--leaf));box-shadow:0 26px 64px rgba(12,38,23,.28);display:flex;align-items:center;justify-content:center;max-width:340px;margin:0 auto}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portrait .initials{font-family:'Fraunces',serif;font-size:104px;color:rgba(255,255,255,.88);font-weight:700}
+.portrait .tag{position:absolute;bottom:14px;left:14px;right:14px;background:rgba(255,255,255,.93);border-radius:12px;padding:9px 14px;font-size:12.5px;color:var(--muted);text-align:center}
+.pres-body h2{font-size:clamp(26px,3.8vw,38px);color:var(--forest-deep);margin-bottom:4px}
+.pres-body .role{color:var(--leaf);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px}
+.pres-body p{color:var(--muted);font-size:16.5px;margin-bottom:14px}
+.pres-body .pull{border-left:3px solid var(--gold);padding:8px 0 8px 20px;font-family:'Fraunces',serif;font-style:italic;font-size:19px;color:var(--forest-deep);margin-top:18px}
+
+/* cta band (shared by inner pages) */
+.cta-band{background:linear-gradient(150deg,var(--forest),var(--leaf));color:#fff;padding:72px 0;text-align:center}
+.cta-band h2{color:#fff;font-size:clamp(26px,3.8vw,40px);margin-bottom:12px}
+.cta-band p{color:#E4F0E6;max-width:520px;margin:0 auto 26px;font-size:16.5px}
+.cta-band .btn{background:#fff;color:var(--forest)}
+.cta-band .btn:hover{background:var(--paper);transform:translateY(-2px)}
